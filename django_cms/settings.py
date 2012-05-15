@@ -125,6 +125,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.flatpages',
     'django_cms.search',
+    'blog',
+    'tagging',
 )
 
 # A sample logging configuration. The only tangible logging
