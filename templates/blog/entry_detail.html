@@ -3,8 +3,20 @@
         <title>{{ entry.title }}</title>
     </head>
     <body>
-        <h2>  </h2>
-        <p>Published on {{ entry.date|date:"F j, Y" }}</p>
-        {{ entry.body_html }}
+        <p>Published on {{ entry.pub_date|date:"F j, Y" }}</p>
+        {{ entry.body_html|safe }}
+        <p>Categories: {{ entry.categories }}</p>
+        {% comment %}
+        {% for category in entry.categories %}
+            {{ category }}
+        {% endfor %}
+        {% endcomment %}
+        <p>Tags: {{ entry.tags }}</p>
+        {% if entry.featured %}
+            <p>FEATURED ENTRY</p>
+        {% endif %}
+        {% if entry.enable_comments %}
+            <p>comments enabled</p>
+        {% endif %}
     </body>
 </html>
