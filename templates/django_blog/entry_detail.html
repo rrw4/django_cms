@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>{{ object.title }}</title>
+    </head>
+    <body>
+        <p>Published on {{ object.pub_date|date:"F j, Y" }}</p>
+        {{ object.body_html|safe }}
+        <p>Categories: {{ object.categories }}</p>
+        {% comment %}
+        {% for category in object.categories %}
+            {{ category }}
+        {% endfor %}
+        {% endcomment %}
+        <p>Tags: {{ object.tags }}</p>
+        {% if object.featured %}
+            <p>FEATURED ENTRY</p>
+        {% endif %}
+        {% if object.enable_comments %}
+            <p>comments enabled</p>
+        {% endif %}
+    </body>
+</html>
