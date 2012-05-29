@@ -1,0 +1,10 @@
+<html>
+    <head>
+        <title>{{ entry.title }}</title>
+    </head>
+    <body>
+        <h2>  </h2>
+        <p>Published on {{ entry.date|date:"F j, Y" }}</p>
+        {{ entry.body_html }}
+    </body>
+</html>

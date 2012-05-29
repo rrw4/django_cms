@@ -17,5 +17,7 @@ urlpatterns = patterns('',
     url(r'^tiny_mce/(?P<path>.*)$', 'django.views.static.serve',
                      { 'document_root': '/Users/rogerwang/projects/django_cms/media/js/tinymce/jscripts/tiny_mce' }),
     url(r'^search/$', 'django_cms.search.views.search'),
+    url(r'^weblog/$', 'django_blog.views.entries_index'),
+    url(r'^weblog/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$', 'django_blog.views.entry_detail'), 
     url(r'', include('django.contrib.flatpages.urls')),
 )

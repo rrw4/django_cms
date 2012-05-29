@@ -125,7 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.flatpages',
     'django_cms.search',
-    'blog',
+    'django_blog',
     'tagging',
 )
 
