@@ -1,1 +1,12 @@
-
+<html>
+    <head>
+        <p>Blog entries in {{ year }}:</p>
+    </head>
+    {% comment %}
+    <body>
+        {% for date in date_list %}
+            <p>date: {{ date|date:"F j, Y" }}</p>
+        {% endfor %}
+    </body>
+    {% endcomment %}
+</html>
