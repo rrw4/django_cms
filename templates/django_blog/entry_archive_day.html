@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <h1>Blog entries</h1>
+    </head>
+    <body>
+        {% for entry in object_list %}
+            <h2><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h2>
+            <p>date: {{ entry.pub_date }}</p>
+            <p>tags: {{ entry.tags }}</p>
+            <p>excerpt: {{ entry.excerpt_html|safe }}</p>
+        {% endfor %}
+    </body>
+</html>
