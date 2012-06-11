@@ -1,1 +1,7 @@
+{% extends "django_blog/base.html" %}
+
+{% block content %}
+{{ object.description_html | safe }}
+<p><a href="{{ object.url }}">Visit site</a></p>
+{% endblock %}
 
