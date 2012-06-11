@@ -4,7 +4,7 @@
 <head>
     <title>Roger's blog {% block title %}{% endblock %}</title>
 </head>
-<body>
+<body class="{% block bodyclass %}{% endblock %}">
     <div id="header">
         <h1 id="branding">Roger's blog</h1>
     </div>
@@ -15,12 +15,24 @@
     <div id="sidebar">
         <h2>Navigation</h2>
         <ul id="main-nav">
-            <li id="main-nav-entries"><a href="/weblog/">Entries</a></li>
-            <li id="main-nav-links"><a href="/weblog/links/">Links</a></li>
-            <li id="main-nav-categories"><a href="/weblog/categories/">Categories</a></li>
-            <li id="main-nav-tags"><a href="/weblog/tags/">Tags</a></li>
+            <li id="main-nav-entries">
+                <a href="{% url django_blog_entry_archive_index %}">Entries</a>
+            </li>
+            <li id="main-nav-links">
+                <a href="{% url django_blog_link_archive_index %}">Links</a>
+            </li>
+            {% comment %}
+            <li id="main-nav-categories">
+                <a href="{% url django_blog_category_list %}">Categories</a>
+            </li>
+            <li id="main-nav-tags">
+                <a href="{% url django_blog_tag_list %}">Tags</a>
+            </li>
+            {% endcomment %}
         </ul>
+        <h2>What is this?</h2>
+        {% block whatis %}
+        {% endblock %}
     </div>
 </body>
 </html>
-
