@@ -1,10 +1,17 @@
-<html>
-    <head>
-        <p>Blog entries in {{ year }}:</p>
-    </head>
-    <body>
-        {% for date in date_list %}
-            <p>date: {{ date|date:"F j, Y" }}</p>
-        {% endfor %}
-    </body>
-</html>
+{% extends "django_blog/base_entries.html" %}
+
+{% block title %}{{ block.super }} | {{ year }}{% endblock %}
+
+{% block content %}
+<ul>
+    {% for month in date_list %}
+        <li>
+            <a href="{% url django_blog_entry_archive_month year,month|date:"b" %}">{{ month|date:"F" }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block whatis %}
+<p>This is a list of months in {{ year }} in which I published entries in my blog.</p>
+{% endblock %}

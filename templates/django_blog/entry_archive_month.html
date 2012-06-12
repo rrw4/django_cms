@@ -1,13 +1,22 @@
-<html>
-    <head>
-        <h1>Blog entries</h1>
-    </head>
-    <body>
-        {% for entry in object_list %}
-            <h2><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h2>
-            <p>date: {{ entry.pub_date }}</p>
-            <p>tags: {{ entry.tags }}</p>
-            <p>excerpt: {{ entry.excerpt_html|safe }}</p>
-        {% endfor %}
-    </body>
-</html>
+{% extends "django_blog/base_entries.html" %}
+
+{% block title %}
+{{ block.super }} | Entries in {{ month|date:"F Y" }}
+{% endblock %}
+
+{% block content %}
+{% for entry in object_list %}
+    <h2>{{ entry.title }}</h2>
+    <p>Published on {{ entry.pub_date|date:"F j, Y" }}</p>
+    {% if entry.excerpt_html|safe %}
+        {{ entry.excerpt_html|safe }}
+    {% else %}
+    {{ entry.body_html|truncatewords_html:"50"|safe }}
+    {% endif %}
+    <p><a href="{{ entry.get_absolute_url }}">Read full entry...</a></p>
+{% endfor %}
+{% endblock %}
+
+{% block whatis %}
+    <p>This is a list of entries published in my blog in {{ month|date:"F Y" }}.</p>
+{% endblock %}
