@@ -1,9 +1,15 @@
-{% extends "django_blog/base.html" %}
+{% extends "django_blog/base_links.html" %}
 
 {% block content %}
     <h2>Links: </h2>
     {% for link in latest %}
-        <p><a href={{ link.url }}>{{ link.title }}</a></p>
+        <p>{{ link.title }}:
+        <a href={{ link.url }}>Visit site</a> |
+        <a href={{ link.get_absolute_url }}>Link detail</a></p>
     {% endfor %}
+{% endblock %}
+
+{% block whatis %}
+    <p>These are all the links from my blog.</p>
 {% endblock %}
 
