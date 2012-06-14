@@ -1,5 +1,35 @@
-{% extends "django_blog/base.html" %}
+{% extends "django_blog/base_entries.html" %}
+
+{% block title %}{{ block.super }} | {{ object.title }}{% endblock %}
 
 {% block content %}
+<h2>{{ object.title }}</h2>
 {{ object.body_html|safe }}
 {% endblock %}
+
+{% block whatis %}
+<p>This is an entry posted to my blog on {{ object.pub_date|date:"F j, Y" }}.</p>
+
+{% if object.categories.count %}
+    <p>This entry is part of the categor{{ object.categories.count|pluralize:"y,ies" }}
+    {% for category in object.categories.all %}
+        <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+        {% if forloop.last %}{% else %}
+        {% ifequal forloop.revcounter0 1 %}and {% else %}, {% endifequal %}
+        {% endif %}
+    {% endfor %}
+    </p>
+{% else %}
+    <p>This entry isn't part of any categories.</p>
+{% endif %}
+{% if object.tags.count %}
+    <p>This entry has tag{{ object.tags.count|pluralize }}: 
+    {% for tag in object.tags.all %}
+        <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
+    {% endfor %}
+    </p>
+{% else %}
+    <p>This entry doesn't have any tags.</p>
+{% endif %}
+{% endblock %}
+
