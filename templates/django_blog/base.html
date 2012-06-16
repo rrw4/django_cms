@@ -33,6 +33,17 @@
         <h2>What is this?</h2>
         {% block whatis %}
         {% endblock %}
+        {% load django_blog_tags %}
+        <h2>Latest entries in the weblog</h2>
+        <ul>
+            {% get_latest_entries %}
+            {% for entry in latest_entries %}
+            <li>
+                <a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>,
+                    posted {{ entry.pub_date|timesince }} ago.
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 </html>
