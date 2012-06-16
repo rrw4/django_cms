@@ -127,6 +127,8 @@ INSTALLED_APPS = (
     'django_cms.search',
     'django_blog',
     'tagging',
+    'django.contrib.comments',
+    'django.contrib.markup',
 )
 
 # A sample logging configuration. The only tangible logging
